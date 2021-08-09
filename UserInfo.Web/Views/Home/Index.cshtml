@@ -1,0 +1,14 @@
+﻿@model IEnumerable<UserInfo.Data.Models.User>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <h4>There are @Model.Count() users registered.</h4>
+    
+</div>
+@foreach(var user in Model)
+            {
+                <li>@user.Name</li>
+            }
