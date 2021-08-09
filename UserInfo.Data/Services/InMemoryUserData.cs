@@ -19,9 +19,33 @@ namespace UserInfo.Data.Services
                 new User{Id=4, Name="Davit", LastName="Deivich", PersonalId=033001085718}
             };
         }
+
+        public void Add(User user)
+        {
+            users.Add(user);
+            user.Id = users.Max(r => r.Id) + 1;
+        }
+        public void Update(User user)
+        {
+            var existing = Get(user.Id);
+            if (existing != null)
+            {
+                existing.Name = user.Name;
+                existing.LastName = user.LastName;
+                existing.PersonalId = user.PersonalId;
+
+            }
+        }
+        public User Get(int id)
+        {
+            return users.FirstOrDefault(r => r.Id == id);
+        }
+
         public IEnumerable<User> GetAll()
         {
             return users.OrderBy(r => r.Id);
         }
+
+       
     }
 }

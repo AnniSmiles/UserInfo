@@ -10,5 +10,8 @@ namespace UserInfo.Data.Services
     public interface IUserData
     {
         IEnumerable<User> GetAll();
+        void Add(User user);
+        User Get(int id);
+        
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UserInfo.Data.Models;
 using UserInfo.Data.Services;
 
 namespace UserInfo.Web.Controllers
@@ -21,5 +22,26 @@ namespace UserInfo.Web.Controllers
             var model = db.GetAll();
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(User user)
+        {
+            
+            if(ModelState.IsValid)
+            {
+                db.Add(user);
+                return RedirectToAction("Index");
+            }
+            return View();
+           
+        }
+
+        
     }
 }
